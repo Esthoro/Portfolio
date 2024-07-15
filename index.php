@@ -32,6 +32,12 @@ if (isset($_GET['action']) && $_GET['action'] !== '') {
         } else {
             myAccount();
         }
+    } elseif ($_GET['action'] === 'admin') {
+        if(!isConnected() && isAdmin()) {
+            admin();
+        } else {
+            myAccount();
+        }
     }
     else {
         echo "Erreur 404 : la page que vous recherchez n'existe pas.";
