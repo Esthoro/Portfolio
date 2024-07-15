@@ -1,6 +1,6 @@
-<?php
+<?php $title = "EH - Admin"; ?>
 
-include('header.html'); ?>
+<?php ob_start(); ?>
 
 
 <section id="creationPost" class="contact mb-5">
@@ -42,4 +42,7 @@ include('header.html'); ?>
   </div>
 </section>
 
-<?php include('footer.html');
+<?php $content = ob_get_clean(); ?>
+
+<?php
+require('layout.php'); ?>
