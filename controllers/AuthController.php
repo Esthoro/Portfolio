@@ -31,6 +31,10 @@ function isConnected() {
     return $connected;
 }
 
+function isAdmin() {
+
+}
+
 function verifyPerson($pseudo, $mdp) {
         $sql = 'SELECT * FROM person
             WHERE pseudo = :pseudo
@@ -52,10 +56,11 @@ function myAccount() {
     $person = showPersonByLogin($_SESSION['pseudo']);
     require ('views/mon-compte.php');
 }
-
-//Affichage de la page de connexion
 function connexion() {
     require ('views/connexion.php');
+}
+function admin() {
+    require ('views/admin.php');
 }
 
 function showPersonByLogin($login) {
