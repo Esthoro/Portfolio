@@ -1,58 +1,81 @@
 <?php
 
-use App\DB;
-use App\Post;
-
 require_once 'functions.php';
 require_once 'C:\xampp\htdocs\PortfolioGit\public\assets\vendor\autoload.php';
 
-$BlogPost = new Post();
+use App\DB;
 
-$_POST = cleanRequest($_POST);
+if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" ) {
+
+    $_POST = cleanRequest($_POST);
+    $_GET = cleanRequest($_GET);
+
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
 
 //Création post
-if (isset($_POST['title']) && isset($_POST['auteur']) && isset($_POST['chapo']) && isset($_POST['content']) && isset($_POST['ADDPOST']) && $_POST['ADDPOST'] == 'OK') {
-
-    if (createPost ($_POST['title'], $_POST['chapo'], $_POST['content'], $_POST['auteur'])) {
-        echo json_encode([true, 'Post créé']);
-    } else {
-        echo json_encode([false, 'Erreur dans la création du post']);
+    if (isset($_POST['title']) && isset($_POST['auteur']) && isset($_POST['chapo']) && isset($_POST['content']) && isset($_POST['ADDPOST']) && $_POST['ADDPOST'] == 'OK') {
+        $createdPost = 'false';
+        if (createPost($_POST['title'], $_POST['chapo'], $_POST['content'], $_POST['auteur'])) {
+            $createdPost = 'true';
+        }
+        setcookie("createdPost", $createdPost, [
+            'expires' => time() + 60,
+            'path' => '/',
+            'secure' => false,
+            'httponly' => true,
+            'samesite' => 'Strict'
+        ]);
+        header('Location: /PortfolioGit/admin/#createPostForm');
+        exit();
     }
-
-}
 
 //Modification post
-if (isset($_POST['id']) && isset($_POST['title']) && isset($_POST['chapo']) && isset($_POST['content']) && isset($_POST['UPDATEPOST']) && $_POST['UPDATEPOST'] == 'OK') {
-
-    if (updatePost ($_POST['title'], $_POST['chapo'], $_POST['content'])) {
-        echo json_encode([true, 'Post modifié']);
-    } else {
-        echo json_encode([false, 'Erreur dans la modification du post']);
+    if (isset($_POST['id']) && isset($_POST['title']) && isset($_POST['chapo']) && isset($_POST['content']) && isset($_POST['UPDATEPOST']) && $_POST['UPDATEPOST'] == 'OK') {
+        $updatedPost = 'false';
+        if (updatePost($_POST['id'], $_POST['title'], $_POST['chapo'], $_POST['content'])) {
+            $updatedPost = 'true';
+        }
+        setcookie("updatedPost", $updatedPost, [
+            'expires' => time() + 60,
+            'path' => '/',
+            'secure' => false,
+            'httponly' => true,
+            'samesite' => 'Strict'
+        ]);
+        header('Location: /PortfolioGit/admin/#listPostsAdmin');
+        exit();
     }
 
-}
-
 //Suppression post
-if (isset($_POST['id']) && isset($_POST['DELETEPOST']) && $_POST['DELETEPOST'] == 'OK') {
-
-    if (deletePost($_POST['id'])) {
-        echo json_encode([true, 'Post supprimé']);
-    } else {
-        echo json_encode([false, 'Erreur dans la suppression du post']);
+    if (isset($_GET['id']) && isset($_GET['DELETEPOST']) && $_GET['DELETEPOST'] == 'OK') {
+        if (isConnected() && isAdmin()) {
+            $deletedPost = 'false';
+            if (deletePost($_GET['id'])) {
+                $deletedPost = 'true';
+            }
+            setcookie("deletedPost", $deletedPost, [
+                'expires' => time() + 60,
+                'path' => '/',
+                'secure' => false,
+                'httponly' => true,
+                'samesite' => 'Strict'
+            ]);
+            header('Location: /PortfolioGit/admin/#listPostsAdmin');
+            exit();
+        }
     }
 
 }
 
 function showPostById($idPost)
 {
-    if (is_int($idPost)) {
+    if (is_numeric($idPost)) {
         $sql = 'SELECT * FROM post
-         WHERE id = :id
-         ORDER BY `updated_at` DESC';
-        $params = array(
-            ':id' => $idPost
-        );
-        if ($result = DB::exec($sql)) {
+         WHERE id = :id';
+        $params = array(':id' => $idPost);
+        if ($result = DB::exec($sql, $params)) {
             return $result->fetchAll(\PDO::FETCH_OBJ);
         }
     }
@@ -75,24 +98,22 @@ function createPost ($title, $chapo, $content, $author_id) {
     return true;
 }
 
-function updatePost ($postId, $title = '', $chapo = '', $content = '')
+function updatePost ($postId, $title, $chapo, $content)
 {
     $post = showPostById($postId);
 
     if ($post != []) {
-        $updateTitle = $title != '' ? $title : $post->title;
-        $updateChapo = $chapo != '' ? $chapo : $post->chapo;
-        $updateContent = $content != '' ? $content : $post->content;
 
         $sql = 'UPDATE post
         SET title = :title,
             chapo = :chapo,
-            content = :content
+            content = :content,
+            updated_at = NOW()
         WHERE id = :id';
         $params = array(
-            ':title' => $updateTitle,
-            ':chapo' => $updateChapo,
-            ':content' => $updateContent,
+            ':title' => $title,
+            ':chapo' => $chapo,
+            ':content' => $content,
             ':id' => $postId
         );
 
@@ -118,5 +139,5 @@ function deletePost ($postId) {
             return true;
         }
     }
-    return false;
+    return $post;
 }
