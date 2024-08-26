@@ -1,4 +1,4 @@
-<?php $title = "EH - Accueil"; ?>
+<?php $title = "EH - A propos"; ?>
 
 <?php ob_start(); ?>
 
@@ -6,7 +6,7 @@
       <div class="container" data-aos="fade-up">
         <div class="row">
           <div class="col-lg-12 text-center mb-5">
-            <h1 class="page-title">About us</h1>
+            <h1 class="page-title">A propos</h1>
           </div>
         </div>
 
@@ -14,27 +14,34 @@
 
           <div class="d-md-flex post-entry-2 half">
             <a href="#" class="me-4 thumbnail">
-              <img src="assets/img/post-landscape-2.jpg" alt="" class="img-fluid">
+              <img src="/PortfolioGit/public/assets/img/illustration-icone-ordinateur.png" alt="" class="img-fluid">
             </a>
             <div class="ps-md-5 mt-4 mt-md-0">
-              <div class="post-meta mt-4">About us</div>
-              <h2 class="mb-4 display-4">Company History</h2>
-
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
-              <p>Fugit eaque illum blanditiis, quo exercitationem maiores autem laudantium unde excepturi dolores quasi eos vero harum ipsa quam laborum illo aut facere voluptates aliquam adipisci sapiente beatae ullam. Tempora culpa iusto illum accusantium cum hic quisquam dolor placeat officiis eligendi.</p>
+              <h2 class="mb-4 display-4">Mon parcours</h2>
+                <p>Touche-à-tout curieuse, aimant apprendre en autonomie et toujours à la recherche de nouveaux défis, c'est tout naturellement que je me suis tournée vers l'informatique.</p>
+                <p>Quelle autre discipline exige-t-elle une créativité sans cesse renouvelée, en même temps qu'une grande persévérance ?</p>
+                <p>Après un bac S obtenu avec 19.22 de moyenne, cinq ans d'études à distance m'ont permis d'obtenir une licence de maths-info (Université d'Aix-Marseilleà puis un master d'Informatique Avancée (Université de Franche-Comté).</p>
+                <p>Forte d'une expérience professionnelle de près de deux ans, je mets maintenant mes talents de développeuse back-end (PHP, JS) à votre disposition pour, ensemble, réaliser vos rêves.</p>
             </div>
           </div>
 
           <div class="d-md-flex post-entry-2 half mt-5">
             <a href="#" class="me-4 thumbnail order-2">
-              <img src="assets/img/post-landscape-1.jpg" alt="" class="img-fluid">
+              <img src="/PortfolioGit/public/assets/img/mission.png" alt="" class="img-fluid">
             </a>
             <div class="pe-md-5 mt-4 mt-md-0">
-              <div class="post-meta mt-4">Mission &amp; Vision</div>
-              <h2 class="mb-4 display-4">Mission &amp; Vision</h2>
-
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
-              <p>Fugit eaque illum blanditiis, quo exercitationem maiores autem laudantium unde excepturi dolores quasi eos vero harum ipsa quam laborum illo aut facere voluptates aliquam adipisci sapiente beatae ullam. Tempora culpa iusto illum accusantium cum hic quisquam dolor placeat officiis eligendi.</p>
+              <h2 class="mb-4 display-4">Mes valeurs</h2>
+                <ul>
+                    <li>
+                        L'écoute et le respect : pour communiquer avec sérénité.
+                    </li>
+                    <li>
+                        La rigueur : chaque détail de votre projet est pris en compte et intégré au cahier des charges, pour qu'aucun aspect de la mission, qu'il soit technique ou plus global, ne soit laissé dans le flou.
+                    </li>
+                    <li>
+                        La transparence : des discussions en amont pour prévoir un rythme de travail selon l'ampleur du défi, et, par la suite, des réunions planifiées pour rendre compte des avancées au fur et à mesure.
+                    </li>
+                </ul>
             </div>
           </div>
 

@@ -54,7 +54,7 @@
         </nav>
 
         <div class="position-relative">
-            <a href="/PortfolioGit/mon-compte/" class="mx-2"><span class="bi-person"></span></a>
+                <a href="/PortfolioGit/mon-compte/" class="mx-2"><span class="bi-person"></span></a>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </div>
 
@@ -76,7 +76,7 @@
             <div class="row g-5">
                 <div class="col-lg-4">
                     <h3 class="footer-heading">A propos de moi</h3>
-                    <p>Jeune développeuse de 23 ans, titulaire d'un Master en Informatique et forte d'une expérience de plus de deux ans dans le monde la programmation, j'ai hâte de découvrir votre projet et vous aider à le réaliser.</p>
+                    <p>Jeune développeuse de 23 ans, titulaire d'un Master en Informatique et forte d'une expérience de plus de deux ans dans le monde de la programmation, j'ai hâte de découvrir votre projet et vous aider à le réaliser.</p>
                     <p><a href="/PortfolioGit/about/" class="footer-link-more">En savoir plus</a></p>
                 </div>
                 <div class="col-6 col-lg-2">
@@ -93,7 +93,7 @@
                     <h3 class="footer-heading">Espace perso</h3>
                     <ul class="footer-links list-unstyled">
                         <li><a href="/PortfolioGit/mon-compte/"><i class="bi bi-chevron-right"></i> Mon compte</a></li>
-                        <li><a href="/PortfolioGit/mon-compte/"><i class="bi bi-chevron-right"></i> Administration</a></li>
+                        <li><a href="/PortfolioGit/admin/"><i class="bi bi-chevron-right"></i> Administration</a></li>
                     </ul>
                 </div>
 
@@ -103,9 +103,9 @@
                     <ul class="footer-links footer-blog-entry list-unstyled">
                         <?php foreach ($lastPostsForFooter as $postFooter): ?>
                         <li>
-                            <a href="single-post.php?id=<?= $postFooter->id; ?>" class="d-flex align-items-center">
+                            <a href="/PortfolioGit/singlePost/<?= $postFooter->id; ?>/" class="d-flex align-items-center">
                                 <div>
-                                    <div class="post-meta d-block"><span class="date"><?= $postFooter->title; ?></span> <span class="mx-1">&bullet;</span> <span><?=$lastPostsForFooter->updated_at; ?></span></div>
+                                    <div class="post-meta d-block"><span class="date"><?= $postFooter->title; ?></span> <span class="mx-1">&bullet;</span> <span><?= $postFooter->updated_at; ?></span></div>
                                     <span><?= $postFooter->chapo; ?></span>
                                 </div>
                             </a>
@@ -155,7 +155,6 @@
 <script src="/PortfolioGit/public/assets/vendor/swiper/swiper-bundle.min.js"></script>
 <script src="/PortfolioGit/public/assets/vendor/glightbox/js/glightbox.min.js"></script>
 <script src="/PortfolioGit/public/assets/vendor/aos/aos.js"></script>
-<script src="/PortfolioGit/public/assets/vendor/php-email-form/validate.js"></script>
 
 <!-- Template Main JS File -->
 <script src="/PortfolioGit/public/assets/js/main.js"></script>

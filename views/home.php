@@ -20,7 +20,18 @@
                     <div class="post-meta mt-4"></div>
                     <h2 class="mb-4 display-4">A propos de moi...</h2>
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
+                    <p>
+                        Développeuse web passionnée, je suis titulaire d'un Master en Informatique. Pendant mes études, j'ai commencé à travailler en alternance,
+                        cumulant au master une formation OpenClassrooms et des journées en entreprise.
+                    </p>
+                    <p>
+                        Cela fait à présent plus de deux ans que je travaille en tant que développeuse back-end (utilisant principalement PHP et JS).
+                        Mes missions incluent la création et la maintenance de site via un CMS personnalisé, mais aussi avec Wordpress, ainsi que le développement de plugins et d'applications dédiées.
+                        En parallèle, j'ai réalisé plusieurs projets pour OpenClassrooms, allant de la rédaction d'un cahier des charges pour un client à la création d'un blog from scratch.
+                    </p>
+                    <p>
+                        J'ai hâte de découvrir votre projet et vous aider à le réaliser !
+                    </p>
                 </div>
             </div>
 
@@ -30,17 +41,17 @@
     </div>
 </section>
 
-<section class="mb-5 bg-light py-5">
+<!--<section class="mb-5 bg-light py-5">
     <div class="container" data-aos="fade-up">
         <div class="row justify-content-between align-items-lg-center">
             <div class="col-lg-12 mb-5">
-                <h2 class="display-4 mb-4"><?= var_dump( $lastPost); ?></h2>
-                <p><?php /*= $lastPost->content;*/ ?></p>
+                <h2 class="display-4 mb-4"><?php /*= $lastPost->title; */?></h2>
+                <p><?php /*= $lastPost->content; */?></p>
                 <p><a href="/PortfolioGit/blog/" class="more">Voir tous les posts</a></p>
             </div>
         </div>
     </div>
-</section>
+</section>-->
 
 <section id="contact" class="contact mb-5">
     <div class="container" data-aos="fade-up">
@@ -80,7 +91,7 @@
         </div>
 
         <div class="form mt-5">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form id="contactForm" action="/PortfolioGit/controllers/Contact.php" method="post" role="form" class="php-email-form">
                 <div class="row">
                     <div class="form-group col-md-6">
                         <input type="text" name="name" class="form-control" id="name" placeholder="Nom*" required>
@@ -95,14 +106,23 @@
                 <div class="form-group">
                     <textarea class="form-control" name="message" rows="5" placeholder="Dites-m'en un peu plus sur vos projets..." required></textarea>
                 </div>
-                <div class="my-3">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
-                </div>
-                <div class="text-center"><button type="submit">Send Message</button></div>
+                <div class="text-center"><button type="submit">Envoyer</button></div>
             </form>
-        </div><!-- End Contact Form -->
+        </div>
+
+        <?php if (isset($_COOKIE['messageSent']) && $_COOKIE['messageSent'] == 'true'): ?>
+            <div class="row">
+                <h4>Message envoyé, merci !</h4>
+            </div>
+        <?php elseif (isset($_COOKIE['messageSent']) && $_COOKIE['messageSent'] == 'false'): ?>
+            <div class="row">
+                <h4>Echec de l'envoi de votre message, merci de réessayer ultérieurement.</h4>
+            </div>
+        <?php elseif (isset($_COOKIE['messageSent']) && $_COOKIE['messageSent'] == 'dataLack'): ?>
+            <div class="row">
+                <h4>Merci de remplir tous les champs.</h4>
+            </div>
+        <?php endif; ?>
 
     </div>
 </section>
