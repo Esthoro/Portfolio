@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once __DIR__ . '/public/assets/vendor/autoload.php';
 
 require_once 'controllers/BlogController.php';
@@ -7,41 +9,60 @@ require_once 'controllers/PostController.php';
 require_once 'controllers/Contact.php';
 require_once 'controllers/AuthController.php';
 
-if (isset($_GET['action']) && $_GET['action'] !== '') {
+$action = $_GET['action'] ?? null;
 
-    if ($_GET['action'] === 'singlePost') {
-
-        if (isset($_GET['id']) && is_int($_GET['id']) && $_GET['id'] > 0) {
-
-            $postId = $_GET['id'];
+switch ($action) {
+    case 'singlePost':
+        $postId = $_GET['id'] ?? null;
+        if (is_numeric($postId) && $postId > 0) {
             singlePost($postId);
+        } else {
+            errorPage();
+        }
+        break;
 
-        } else {
-            echo 'Erreur : aucun post ne correspond à votre recherche.';
-            die;
-        }
-    } elseif ($_GET['action'] === 'blog') {
+    case 'blog':
         blog();
-    }  elseif ($_GET['action'] === 'about') {
+        break;
+
+    case 'about':
         about();
-    }  elseif ($_GET['action'] === 'contact') {
+        break;
+
+    case 'contact':
         contact();
-    } elseif ($_GET['action'] === 'mon-compte') {
-        if(!isConnected()) {
-            connexion();
-        } else {
-            myAccount();
-        }
-    } elseif ($_GET['action'] === 'admin') {
-        if(!isConnected() && isAdmin()) {
+        break;
+
+    case 'mon-compte':
+        isConnected() ? myAccount() : connexion();
+        break;
+
+    case 'admin':
+        if (isConnected() && isAdmin()) {
             admin();
         } else {
-            myAccount();
+            errorPage();
         }
-    }
-    else {
-        echo "Erreur 404 : la page que vous recherchez n'existe pas.";
-    }
-} else {
-    homepage();
+        break;
+
+    case 'updatePost':
+        if (isConnected() && isAdmin()) {
+            $postId = $_GET['id'] ?? null;
+            if (is_numeric($postId) && $postId > 0) {
+                showUpdatePost($postId);
+            } else {
+                errorPage();
+            }
+        } else {
+            errorPage();
+        }
+        break;
+
+    case '404':
+        errorPage();
+        break;
+
+    default:
+        homepage();
+        break;
 }
