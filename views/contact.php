@@ -1,4 +1,4 @@
-<?php $title = "EH - Accueil"; ?>
+<?php $title = "EH - Contact"; ?>
 
 <?php ob_start(); ?>
 
@@ -54,11 +54,6 @@
                 </div>
                 <div class="form-group">
                     <textarea class="form-control" name="message" rows="5" placeholder="Dites-m'en un peu plus sur vos projets..." required></textarea>
-                </div>
-                <div class="my-3">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
                 </div>
                 <div class="text-center"><button type="submit">Envoyer</button></div>
             </form>

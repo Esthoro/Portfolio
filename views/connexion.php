@@ -20,18 +20,16 @@
                         <div class="form-group col-md-6">
                             <input type="password" class="form-control" name="password" id="password" placeholder="Mot de passe" required>
                         </div>
-                        <div class="my-3">
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
-                        </div>
                     </div>
                     <div class="text-center"><button type="submit">Se connecter</button></div>
                 </form>
             </div>
-            <div class="post-meta mt-4">Pas encore inscrit ? N'attendez pas, <a href="#">rejoignez-nous</a> !</div>
-            <div class="post-meta mt-4">L'inscription est sujette à confirmation par le webmaster.</div>
-
+            <?php if (isset($_COOKIE['errorLogin']) && $_COOKIE['errorLogin'] == 'true'): ?>
+                <div class="row">
+                    <h4>Nom d'utilisateur ou mot de passe incorrect</h4>
+                </div>
+            <?php endif; ?>
+            <div class="post-meta mt-4">Pas encore inscrit ? N'attendez pas, <a href="#register-form">rejoignez-nous</a> !</div>
         </div>
     </section>
 
@@ -45,8 +43,9 @@
             </div>
 
             <div class="form mt-5 contact">
-                <form action="/PortfolioGit/controllers/AuthController.php" method="post" role="form" class="php-email-form">
+                <form action="/PortfolioGit/controllers/AuthController.php" id="register-form" method="post" role="form" class="php-email-form">
                     <div class="row">
+                        <input style="visibility: hidden" name="REGISTER" value="OK">
                         <div class="form-group col-md-4">
                             <input type="text" name="name-registration" class="form-control" id="name-registration" placeholder="Nom" required>
                         </div>
@@ -65,16 +64,21 @@
                         <div class="form-group col-md-4">
                             <input type="password" class="form-control" name="password-verif-registration" id="password-verif-registration" placeholder="Confirmez le mot de passe" required>
                         </div>
-                        <div class="my-3">
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
-                        </div>
                     </div>
                     <div class="text-center"><button type="submit">S'inscrire</button></div>
                 </form>
             </div>
             <div class="post-meta mt-4">L'inscription est sujette à confirmation par le webmaster.</div>
+
+            <?php if (isset($_COOKIE['inscriptionSent']) && $_COOKIE['inscriptionSent'] == 'true'): ?>
+                <div class="row">
+                    <h4>Demande d'inscription envoyée, merci !</h4>
+                </div>
+            <?php elseif (isset($_COOKIE['inscriptionSent']) && $_COOKIE['inscriptionSent'] == 'false'): ?>
+                <div class="row">
+                    <h4>Echec de l'envoi de votre demande, merci de vous assurer que tous les champs sont remplis et que les mots de passe correspondent.</h4>
+                </div>
+            <?php endif; ?>
 
         </div>
     </section>
