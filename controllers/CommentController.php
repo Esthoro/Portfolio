@@ -4,6 +4,7 @@ require_once 'functions.php';
 require_once 'C:\xampp\htdocs\PortfolioGit\public\assets\vendor\autoload.php';
 
 use App\DB;
+use App\Comment;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" ) {
 
@@ -15,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
 
         $_POST = cleanRequest($_POST);
         $_GET = cleanRequest($_GET);
+        $_SESSION = cleanRequest($_SESSION);
 
         //Création commentaire
         if (isset($_POST['commentMessage']) && isset($_POST['postId']) && is_numeric($_POST['postId'])
@@ -32,7 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
                 'samesite' => 'Strict' // Limite les cookies aux requêtes du même site
             ]);
             header('Location: /PortfolioGit/singlePost/' . $_POST['postId'] . '/#sendComment');
-            exit();
         }
 
         // Suppression commentaire
@@ -49,7 +50,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
                 'samesite' => 'Strict'
             ]);
             header('Location: /PortfolioGit/mon-compte/#listComments');
-            exit();
         }
 
         //Validation commentaire
@@ -72,8 +72,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
                 'samesite' => 'Strict'
             ]);
             header('Location: /PortfolioGit/mon-compte/#listCommentsAdmin');
-            exit();
-
         }
 
     }

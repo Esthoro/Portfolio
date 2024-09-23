@@ -28,7 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
             'samesite' => 'Strict'
         ]);
         header('Location: /PortfolioGit/admin/#createPostForm');
-        exit();
     }
 
 //Modification post
@@ -45,7 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
             'samesite' => 'Strict'
         ]);
         header('Location: /PortfolioGit/admin/#listPostsAdmin');
-        exit();
     }
 
 //Suppression post
@@ -63,7 +61,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
                 'samesite' => 'Strict'
             ]);
             header('Location: /PortfolioGit/admin/#listPostsAdmin');
-            exit();
         }
     }
 

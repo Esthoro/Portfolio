@@ -40,8 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
             'samesite' => 'Strict'
         ]);
         header('Location: /PortfolioGit/mon-compte/#listPersonsAdmin');
-        exit();
-
     }
 }
 

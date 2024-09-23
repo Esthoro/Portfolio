@@ -8,6 +8,7 @@ use App\DB;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $_POST = cleanRequest($_POST);
+    $_SESSION = cleanRequest($_SESSION);
 
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
@@ -29,7 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'samesite' => 'Strict'
             ]);
             header('Location: /PortfolioGit/mon-compte/#connexion');
-            exit();
         }
     }
 
@@ -38,7 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             session_unset();
             session_destroy();
             header('Location: /PortfolioGit/');
-            exit();
         }
         else {
             setcookie("errorLogout", 'true', [
@@ -49,7 +48,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'samesite' => 'Strict'
             ]);
             header('Location: /PortfolioGit/mon-compte/#logout-form');
-            exit();
         }
     }
 
@@ -72,16 +70,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             }
         }
-
-    setcookie("inscriptionSent", $inscriptionSent, [
-        'expires' => time() + 60,
-        'path' => '/',
-        'secure' => false,
-        'httponly' => true,
-        'samesite' => 'Strict'
-    ]);
-    header('Location: /PortfolioGit/mon-compte/#register-form');
-    exit();
+        setcookie("inscriptionSent", $inscriptionSent, [
+            'expires' => time() + 60,
+            'path' => '/',
+            'secure' => false,
+            'httponly' => true,
+            'samesite' => 'Strict'
+        ]);
+        header('Location: /PortfolioGit/mon-compte/#register-form');
     }
 
     if (isset ($_POST['personId']) && ($_POST['personId'] == $_SESSION['personId']) && isset ($_POST['UPDATEUSERDATA']) && $_POST['UPDATEUSERDATA'] == 'OK') {
@@ -110,7 +106,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'samesite' => 'Strict'
             ]);
             header('Location: /PortfolioGit/mon-compte/#update-data-form');
-            exit();
         }
     }
 
@@ -121,7 +116,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     session_unset();
                     session_destroy();
                     header('Location: /PortfolioGit/');
-                    exit();
                 }
             }
         };

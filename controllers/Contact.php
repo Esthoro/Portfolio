@@ -3,9 +3,10 @@
 require_once 'functions.php';
 require_once 'C:\xampp\htdocs\PortfolioGit\public\assets\vendor\autoload.php';
 
-$_POST = cleanRequest($_POST);
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $_POST = cleanRequest($_POST);
+
     $messageSent = 'false';
     if (!empty ($_POST['name']) && !empty ($_POST['email']) && !empty ($_POST['subject']) && !empty ($_POST['message'])) {
         $subject = 'Formulaire de contact du blog : ' . $_POST['subject'];
