@@ -40,7 +40,6 @@ class DB
                 } catch (PDOException $e) {
 
                     $attempts--;
-                    sleep(1);
                 }
             }
         }
@@ -57,6 +56,9 @@ class DB
         if (self::$dbh = self::connect()) {
             try {
                 $stmt = self::$dbh->prepare($sql);
+                foreach ($params as $key => $value) {
+                    $stmt->bindValue($key, $value);
+                }
                 $stmt->execute($params);
                 return $stmt;
             } catch (PDOException $e) {
