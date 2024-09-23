@@ -21,9 +21,9 @@ The blog serves as a portfolio and a platform to demonstrate my proficiency in w
 - Add Blog Post (Admin page): allows administrators to add new blog posts (title, summary, content, author).
 - Edit Blog Post : allows administrators to modify the title, summary, content, and author of an existing post.
 - Delete Blog Post (Admin page): allows administrators to delete blog posts.
-- My account: allows registered users to access, modify and delete their personal data and comments.
+- My account: allows registered users to access, modify and delete their personal data and comments. An admin can approve user registering or comments, or deny them.
 
-Only administrators can access the blog management interface. Regular users can leave comments, but they themselves need to be registered, and comments require approval before publication.
+Only administrators can access the blog management interface. Regular users can leave comments, but they themselves need to be registered and approved, and comments require approval before publication.
 
 **Security:**
 
