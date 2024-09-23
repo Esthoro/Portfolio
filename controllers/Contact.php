@@ -24,7 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'samesite' => 'Strict'
     ]);
     header('Location: /PortfolioGit/#contactForm');
-    exit;
 }
 
 function contact() {
