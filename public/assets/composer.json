@@ -1,0 +1,14 @@
+{
+    "name": "esther/portfolio_oc",
+    "description": "Portfolio pour OpenClassrooms",
+    "type": "project",
+    "minimum-stability": "dev",
+    "require": {
+        "phpmailer/phpmailer": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "C:\\xampp\\htdocs\\PortfolioGit\\models\\Class"
+        }
+    }
+}
