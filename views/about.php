@@ -56,46 +56,54 @@
           <div class="col-12 text-center mb-5">
             <div class="row justify-content-center">
               <div class="col-lg-6">
-                <h2 class="display-4">Mes projets</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil sint sed, fugit distinctio ad eius itaque deserunt doloribus harum excepturi laudantium sit officiis et eaque blanditiis. Dolore natus excepturi recusandae.</p>
+                  <h2 class="display-4">Mes projets</h2>
+                  <p>Vous trouverez ci-dessous une brève description de quelques-uns de mes projets, ainsi que les éventuels liens des sites sur lesquels j'ai travaillés.</p>
+                  <p>Pour plus de détails, n'hésitez pas à <strong><a href="/PortfolioGit/contact/">me contacter</a></strong>.</p>
               </div>
             </div>
           </div>
           <div class="col-lg-4 text-center mb-5">
-            <img src="assets/img/person-1.jpg" alt="" class="img-fluid rounded-circle w-50 mb-4">
-            <h4>Cameron Williamson</h4>
-            <span class="d-block mb-3 text-uppercase">Founder &amp; CEO</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
+              <a href="/PortfolioGit/public/assets/pdf/doc_utilisateur.pdf" target="_blank">
+                  <img src="/PortfolioGit/public/assets/img/logoChaletsCaviar.png" alt="" class="img-fluid rounded-circle w-50 mb-4">
+                  <h4>Chalets & Caviar</h4>
+                  <span class="d-block mb-3 text-uppercase">Formation OpenClassrooms</span>
+                  <p>Création d'un site Wordpress pour location de chalets de luxe.</p>
+              </a>
           </div>
           <div class="col-lg-4 text-center mb-5">
-            <img src="assets/img/person-2.jpg" alt="" class="img-fluid rounded-circle w-50 mb-4">
-            <h4>Wade Warren</h4>
-            <span class="d-block mb-3 text-uppercase">Founder, VP</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
+              <a href="/PortfolioGit/public/assets/pdf/cahierDesCharges.pdf" target="_blank">
+                  <img src="/PortfolioGit/public/assets/img/logoFilmsPleinAir.png" alt="" class="img-fluid rounded-circle w-50 mb-4">
+                  <h4>Films de Plein Air</h4>
+                  <span class="d-block mb-3 text-uppercase">Formation OpenClassrooms</span>
+                  <p>Conception d'un cahier des charges et réalisation d'une maquette de site HTML/CSS from scratch.</p>
+              </a>
           </div>
           <div class="col-lg-4 text-center mb-5">
-            <img src="assets/img/person-3.jpg" alt="" class="img-fluid rounded-circle w-50 mb-4">
-            <h4>Jane Cooper</h4>
-            <span class="d-block mb-3 text-uppercase">Editor Staff</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
+            <img src="/PortfolioGit/public/assets/img/diagrammeSequenceOCajoutPlat.drawio.png" alt="" class="img-fluid rounded-circle w-50 mb-4">
+            <h4>ExpressFood</h4>
+            <span class="d-block mb-3 text-uppercase">Formation OpenClassrooms</span>
+            <p>Conception de la structure d'une application complexe : modèles et diagrammes UML, création de la base de données.</p>
           </div>
           <div class="col-lg-4 text-center mb-5">
-            <img src="assets/img/person-4.jpg" alt="" class="img-fluid rounded-circle w-50 mb-4">
-            <h4>Cameron Williamson</h4>
-            <span class="d-block mb-3 text-uppercase">Editor Staff</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
+              <a href="https://cigoland.fr/" target="_blank">
+                  <img src="/PortfolioGit/public/assets/img/logoCigoland.png" alt="" class="img-fluid rounded-circle w-50 mb-4">
+                  <h4>Cigoland</h4>
+                  <p>Maintenance et mise à jour du site.<br>Développement de nombreuses fonctionnalités, notamment la boutique en ligne (auparavant dépendante d'un prestataire extérieur).</p>
+              </a>
           </div>
           <div class="col-lg-4 text-center mb-5">
-            <img src="assets/img/person-5.jpg" alt="" class="img-fluid rounded-circle w-50 mb-4">
-            <h4>Cameron Williamson</h4>
-            <span class="d-block mb-3 text-uppercase">Editor Staff</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
+              <a href="https://m.cigoland.fr/" target="_blank">
+                <img src="/PortfolioGit/public/assets/img/launch.png" alt="" class="img-fluid rounded-circle w-50 mb-4">
+                <h4>Cigo'App (PWA)</h4>
+                <p>Développement complet de l'application à partir d'un CMS personnalisé.</p>
+              </a>
           </div>
           <div class="col-lg-4 text-center mb-5">
-            <img src="assets/img/person-6.jpg" alt="" class="img-fluid rounded-circle w-50 mb-4">
-            <h4>Cameron Williamson</h4>
-            <span class="d-block mb-3 text-uppercase">Editor Staff</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, perspiciatis repellat maxime, adipisci non ipsam at itaque rerum vitae, necessitatibus nulla animi expedita cumque provident inventore? Voluptatum in tempora earum deleniti, culpa odit veniam, ea reiciendis sunt ullam temporibus aut!</p>
+              <a href="https://new.outdoordesign-alsace.fr/" target="_blank">
+                  <img src="/PortfolioGit/public/assets/img/OUTDOOR-OBERNAI-LOGO-1.png" alt="" class="img-fluid rounded-circle w-50 mb-4">
+                  <h4>OutdoorDesign Alsace</h4>
+                  <p>Développement complet du site web à partir d'un CMS personnalisé.</p>
+              </a>
           </div>
         </div>
       </div>

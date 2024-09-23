@@ -9,7 +9,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <link href="/PortfolioGit/public/assets/img/favicon.png" rel="icon">
+    <link href="/PortfolioGit/favicon.png" rel="icon">
     <link href="/PortfolioGit/public/assets/img/logo.png" rel="logo">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,7 +49,7 @@
                 <li><a href="/PortfolioGit/blog/">Blog</a></li>
                 <li><a href="/PortfolioGit/about/">A propos</a></li>
                 <li><a href="/PortfolioGit/contact/">Contact</a></li>
-                <li><a href="/PortfolioGit/public/assets/pdf/cv.pdf" target="_blank">CV</a></li>
+                <li><a href="/PortfolioGit/public/assets/pdf/cv.pdf" target="_blank">Mon CV</a></li>
             </ul>
         </nav>
 
@@ -135,8 +135,8 @@
 
                 <div class="col-md-6">
                     <div class="social-links mb-3 mb-lg-0 text-center text-md-end">
-                        <a href="#" class="github"><i class="bi bi-github"></i></a>
-                        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://github.com/Esthoro?tab=repositories" target="_blank" class="github"><i class="bi bi-github"></i></a>
+                        <a href="https://www.linkedin.com/in/esther-dupraz-21b195285/" target="_blank" class="linkedin"><i class="bi bi-linkedin"></i></a>
                     </div>
 
                 </div>

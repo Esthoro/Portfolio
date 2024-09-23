@@ -14,7 +14,7 @@
                 </div>
                 <h1 class="mb-5"><?= $post->title; ?></h1>
                 <h4 class="mb-5"><?= $post->chapo; ?></h4>
-                <p><?= $post->content; ?></p>
+                <p><?= nl2br($post->content); ?></p>
 
                     <div class="comments">
                         <h5 class="comment-title py-4">Commentaires</h5>
