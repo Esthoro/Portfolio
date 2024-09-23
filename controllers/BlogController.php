@@ -50,8 +50,11 @@ function showLastPosts($postsNumber = 1) {
     if (is_numeric($postsNumber)) {
         $sql = 'SELECT * FROM post
             ORDER BY updated_at DESC
-            LIMIT ' . $postsNumber;
-        if ($result = DB::exec($sql)) {
+            LIMIT :postsNumber';
+        $params = array(
+            ':postsNumber' => $postsNumber
+        );
+        if ($result = DB::exec($sql, $params)) {
             return $result->fetchAll(PDO::FETCH_OBJ);
         }
     }
@@ -95,13 +98,16 @@ function showCommentsByPost($id) {
     }
     return [];
 }
-function showAuthorByIdPost($idPost) {
-    if (is_numeric($idPost)) {
+function showAuthorByIdPost($postId) {
+    if (is_numeric($postId)) {
         $sql = 'SELECT * FROM person
                 LEFT JOIN post
                 ON person.id = post.author_id
-                WHERE post.id = ' . $idPost;
-        if ($result = DB::exec($sql)) {
+                WHERE post.id = :postId';
+        $params = array(
+            ':idPost' => $postId
+        );
+        if ($result = DB::exec($sql, $params)) {
             return $result->fetchAll(\PDO::FETCH_OBJ);
         }
     }
@@ -111,8 +117,11 @@ function showAuthorByIdPost($idPost) {
 function showUserById($id) {
     if (is_numeric($id)) {
         $sql = 'SELECT * FROM person
-                WHERE id = ' . $id;
-        if ($result = DB::exec($sql)) {
+                WHERE id = :id';
+        $params = array(
+            ':id' => $id
+        );
+        if ($result = DB::exec($sql, $params)) {
             return $result->fetchAll(\PDO::FETCH_OBJ);
         }
     }
