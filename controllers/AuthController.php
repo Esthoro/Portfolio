@@ -20,7 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['pseudo'] = $_POST['login'];
             $_SESSION['personId'] = $personId;
             header('Location: /PortfolioGit/');
-            exit;
         } else {
             setcookie("errorLogin", 'true', [
                 'expires' => time() + 60,
