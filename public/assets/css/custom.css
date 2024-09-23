@@ -1,0 +1,36 @@
+.logo h1 {
+    font-family: "Algerian";
+}
+
+h1 {
+    font-family: "Brush Script MT";
+}
+
+.navbar a {
+    font-size: 20px;
+    font-family: var(--font-primary);
+}
+
+.bi-person {
+    font-size: 23px;
+}
+
+.img-fluid {
+    border-radius: 5px;
+}
+
+.disconnect-user {
+    background: var(--color-primary);
+    border: 0;
+    padding: 10px 30px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.disconnect-user:hover {
+    background: rgba(var(--color-primary-rgb), 0.8);
+}
+
+.disconnect-user a {
+    color: #fff;
+}
