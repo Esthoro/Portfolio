@@ -126,5 +126,119 @@ class Post
         $this->updatedAt = $updatedAt;
     }
 
+    public function create() {
+        $sql = 'INSERT INTO post (title, chapo, content, author_id)
+                VALUES (:title, :chapo, :content, :author_id)';
+        $params = array(
+            ':title' => $this->title,
+            ':chapo' => $this->chapo,
+            ':content' => $this->content,
+            ':author_id' => $this->authorId
+        );
+
+        if (!DB::exec($sql, $params)) {
+            return false;
+        }
+        return true;
+    }
+
+    public function showById()
+    {
+        $sql = 'SELECT * FROM post
+        WHERE id = :id';
+        $params = array(':id' => $this->id);
+        if ($result = DB::exec($sql, $params)) {
+            return $result->fetchAll(\PDO::FETCH_OBJ);
+        }
+        return false;
+    }
+
+    public function update()
+    {
+        if ($this->showById()) {
+
+            $sql = 'UPDATE post
+        SET title = :title,
+            chapo = :chapo,
+            content = :content,
+            updated_at = NOW()
+        WHERE id = :id';
+            $params = array(
+                ':title' => $this->title,
+                ':chapo' => $this->chapo,
+                ':content' => $this->content,
+                ':id' => $this->id
+            );
+
+            if (!DB::exec($sql, $params)) {
+                return false;
+            }
+            return true;
+        }
+    }
+
+    public function delete() {
+
+        if ($this->showById()) {
+
+            $sql = 'DELETE FROM post WHERE id = :id';
+            $params = array(
+                ':id' => $this->id
+            );
+
+            if (DB::exec($sql, $params)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function showAuthorByPostId() {
+        $sql = 'SELECT * FROM person
+        LEFT JOIN post
+        ON person.id = post.author_id
+        WHERE post.id = :postId';
+        $params = array(
+            ':idPost' => $this->id
+        );
+        if ($result = DB::exec($sql, $params)) {
+            return $result->fetchAll(\PDO::FETCH_OBJ)[0];
+        }
+        return false;
+    }
+
+    public function showSinglePost() {
+        $sql = 'SELECT * FROM post
+        WHERE id = :id';
+        $params = array(
+            ':id' => $this->id
+        );
+        if ($result = DB::exec($sql, $params)) {
+            return $result->fetchAll(PDO::FETCH_OBJ)[0];
+        }
+        return false;
+    }
+
+    public function showLastPosts($postsNumber = 1) {
+        $sql = 'SELECT * FROM post
+        ORDER BY updated_at DESC
+        LIMIT :postsNumber';
+        $params = array(
+            ':postsNumber' => $postsNumber
+        );
+        if ($result = DB::exec($sql, $params)) {
+            return $result->fetchAll(PDO::FETCH_OBJ);
+        }
+        return false;
+    }
+
+    public function showAll() {
+        $sql = 'SELECT * FROM post
+            ORDER BY updated_at DESC';
+        if ($result = DB::exec($sql)) {
+            return $result->fetchAll(PDO::FETCH_OBJ);
+        }
+        return false;
+    }
 
 }

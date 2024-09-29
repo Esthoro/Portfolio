@@ -7,9 +7,14 @@ class Comment
 
     public int $postId;
     public $datePublication;
-    public string $auteur;
+    public string $author;
     public string $content;
     public int $statut;
+
+    const STATUS = [
+        0 => 'Invalid',
+        1 => 'Valid'
+    ];
     
     /**
      * @return int
@@ -62,17 +67,17 @@ class Comment
     /**
      * @return string
      */
-    public function getAuteur(): string
+    public function getAuthor(): string
     {
-        return $this->auteur;
+        return $this->author;
     }
 
     /**
-     * @param string $auteur
+     * @param string $author
      */
-    public function setAuteur(string $auteur): void
+    public function setAuthor(string $author): void
     {
-        $this->auteur = $auteur;
+        $this->author = $author;
     }
 
     /**
@@ -106,17 +111,90 @@ class Comment
     {
         $this->statut = $statut;
     }
+    public function showByUser() {
+        $sql = 'SELECT comment.*, post.title
+            FROM comment
+            LEFT JOIN post
+            ON comment.post_id = post.id
+            WHERE comment.author_id = :author';
 
-    public function createComment() {
+        $params = array(':author' => $this->author);
 
+        if ($result = DB::exec($sql, $params)) {
+            return $result->fetchAll(\PDO::FETCH_OBJ);
+        }
+        return false;
     }
-    public function deleteComment() {
 
+    public function showByPost() {
+            $sql = 'SELECT * FROM comment
+            WHERE post_id = :id
+            AND statut = 1
+            ORDER BY edited_at DESC';
+            $params = array(
+                ':id' => $this->postId
+            );
+            if ($result = DB::exec($sql, $params)) {
+                return $result->fetchAll(PDO::FETCH_OBJ);
+            }
+        return false;
     }
-    public function updateComment() {
 
+    public function showAllInvalidComments() {
+        $sql = 'SELECT comment.*, person.pseudo
+        FROM comment
+        LEFT JOIN person
+        ON comment.author_id = person.id
+        WHERE comment.statut = 0
+        ORDER BY comment.edited_at DESC';
+        if ($result = DB::exec($sql)) {
+            return $result->fetchAll(PDO::FETCH_OBJ);
+        }
+        return false;
     }
-    public function showByPostId() {
 
+    public function delete () {
+        $sql = 'DELETE FROM comment WHERE id = :commentId';
+        $params = [':commentId' => $this->id];
+
+        if (!isAdmin()) {
+            $sql .= ' AND author_id = :userId';
+            $params[':userId'] = $this->author;
+        }
+        if (!DB::exec($sql, $params)) {
+            return false;
+        }
+        return true;
     }
+
+    public function valid () {
+        $sql = 'UPDATE comment
+        SET statut = :statut
+        WHERE id = :id';
+        $params = array (
+            ':statut' => $this->statut,
+            ':id' => $this->id
+        );
+        if (!DB::exec($sql, $params)) {
+            return false;
+        }
+        return true;
+    }
+
+    public function create() {
+        $sql = 'INSERT INTO comment (post_id, author_id, content, statut)
+                VALUES (:postId, :authorId, :content, :statut)';
+        $params = array(
+            ':postId' => $this->postId,
+            ':authorId' => $this->author,
+            ':content' => $this->content,
+            ':statut' => $this->statut
+        );
+
+        if (!DB::exec($sql, $params)) {
+            return false;
+        }
+        return true;
+    }
+    
 }
