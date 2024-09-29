@@ -214,6 +214,18 @@ class Person
         return false;
     }
 
+    public function showByPseudo() {
+        $sql = 'SELECT * FROM person WHERE pseudo = :pseudo';
+        $params = array(
+            ':pseudo' => $this->pseudo
+        );
+
+        if ($result = DB::exec($sql, $params)) {
+            return $result->fetchAll(\PDO::FETCH_OBJ)[0];
+        }
+        return false;
+    }
+
     public function register() {
         $sql = 'INSERT INTO person (first_name, surname, email, pseudo, password, role, statut)
                 VALUES (:first_name, :surname, :email, :pseudo, :password, :role, 0)';
