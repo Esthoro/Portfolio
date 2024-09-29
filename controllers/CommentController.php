@@ -12,6 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
         session_start();
     }
 
+    $Comment = new Comment();
+
     if (isConnected()) {
 
         $_POST = cleanRequest($_POST);
@@ -21,11 +23,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
         //Création commentaire
         if (isset($_POST['commentMessage']) && isset($_POST['postId']) && is_numeric($_POST['postId'])
             && isset($_POST['ADDCOMMENT']) && $_POST['ADDCOMMENT'] == 'OK') {
+
             $commentAuthorId = showPersonByLogin($_SESSION['pseudo'])[0]->id;
+
             $commentSent = 'false';
-            if (createComment($_POST['postId'], $commentAuthorId, $_POST['commentMessage'])) {
+
+            $Comment->setPostId($_POST['postId']);
+            $Comment->setAuthor($commentAuthorId);
+            $Comment->setContent($_POST['commentMessage']);
+            $Comment->setStatut(0);
+
+            if ($Comment->create()) {
                 $commentSent = 'true';
             }
+
             setcookie("commentSent", $commentSent, [
                 'expires' => time() + 60,
                 'path' => '/',
@@ -38,8 +49,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
 
         // Suppression commentaire
         if (isset($_GET['id']) && isset($_GET['DELETECOMMENT']) && $_GET['DELETECOMMENT'] === 'OK') {
+
             $deletedComment = 'false';
-            if (deleteComment($_GET['id'], $_SESSION['personId'])) {
+
+            $Comment->setId($_GET['id']);
+            $Comment->setAuthor($_SESSION['personId']);
+
+            if ($Comment->delete()) {
                 $deletedComment = 'true';
             }
             setcookie("deletedComment", $deletedComment, [
@@ -59,7 +75,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
 
             //Validation utilisateur
             if (isset($_GET['id']) && isset($_GET['VALIDCOMMENT']) && $_GET['VALIDCOMMENT'] === 'OK') {
-                if (validComment($_GET['id'])) {
+                $Comment->setId($_GET['id']);
+                $Comment->setStatut(1);
+                if ($Comment->valid()) {
                     $updatedComment = 'true';
                 }
             }
@@ -75,54 +93,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
         }
 
     }
-}
-
-function createComment ($postId, $authorId, $content) {
-    $sql = 'INSERT INTO comment (post_id, author_id, content, statut)
-                VALUES (:postId, :authorId, :content, 0)';
-    $params = array(
-        ':postId' => $postId,
-        ':authorId' => $authorId,
-        ':content' => $content
-    );
-
-    if (!DB::exec($sql, $params)) {
-        return false;
-    }
-    return true;
-}
-
-function validComment ($commentId) {
-    $sql = 'UPDATE comment
-        SET statut = 1
-        WHERE id = :commentId';
-    $params = array (
-        ':commentId' => $commentId
-    );
-    if (!DB::exec($sql, $params)) {
-        return false;
-    }
-    return true;
-}
-
-function deleteComment ($commentId, $userId) {
-    if (isAdmin()) {
-        $sql = 'DELETE FROM comment
-            WHERE id = :commentId';
-        $params = array (
-            ':commentId' => $commentId
-        );
-    } else {
-        $sql = 'DELETE FROM comment
-            WHERE id = :commentId
-            AND author_id = :userId';
-        $params = array (
-            ':commentId' => $commentId,
-            ':userId' => $userId
-        );
-    }
-    if (!DB::exec($sql, $params)) {
-        return false;
-    }
-    return true;
 }

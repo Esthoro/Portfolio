@@ -4,6 +4,7 @@ require_once 'functions.php';
 require_once 'C:\xampp\htdocs\PortfolioGit\public\assets\vendor\autoload.php';
 
 use App\DB;
+use App\Person;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" ) {
 
@@ -18,16 +19,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
 
         $updatedUser = 'false';
 
+        $User = new Person();
+
         //Validation utilisateur
         if (isset($_GET['id']) && isset($_GET['VALIDUSER']) && $_GET['VALIDUSER'] == 'OK') {
-            if (validUser($_GET['id'], 1)) {
+            $User->setId($_GET['id']);
+            $User->setStatus(1);
+            if ($User->valid()) {
             $updatedUser = 'true';
             }
         }
 
         //Suppression utilisateur
         if (isset($_GET['id']) && isset($_GET['DELETEUSER']) && $_GET['DELETEUSER'] == 'OK') {
-            if (validUser($_GET['id'], 0)) {
+            $User->setId($_GET['id']);
+            $User->setStatus(0);
+            if ($User->valid()) {
                 $updatedUser = 'true';
             }
         }
@@ -41,19 +48,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
         ]);
         header('Location: /PortfolioGit/mon-compte/#listPersonsAdmin');
     }
-}
-
-function validUser($id, $statut) {
-        $sql = 'UPDATE person
-        SET statut = :statut
-        WHERE id = :id';
-        $params = array(
-            ':statut' => $statut,
-            ':id' => $id
-        );
-
-        if (!DB::exec($sql, $params)) {
-            return false;
-        }
-        return true;
 }

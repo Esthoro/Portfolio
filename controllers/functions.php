@@ -104,5 +104,5 @@ function showPersonByLogin($login) {
     if ($result = DB::exec($sql, $params)) {
         return $result->fetchAll(\PDO::FETCH_OBJ);
     }
-    return [];
+    return false;
 }

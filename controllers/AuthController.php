@@ -4,18 +4,28 @@ require_once 'functions.php';
 require_once 'C:\xampp\htdocs\PortfolioGit\public\assets\vendor\autoload.php';
 
 use App\DB;
+use App\Comment;
+use App\Person;
+use App\Post;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $_POST = cleanRequest($_POST);
     $_SESSION = cleanRequest($_SESSION);
 
+    $Comment = new Comment();
+    $User = new Person();
+
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
 
     if (isset ($_POST['login']) && isset ($_POST['password'])) {
-        if ($personId = verifyPerson($_POST['login'], $_POST['password'])) {
+
+        $User->setPseudo($_POST['login']);
+        $User->setPassword($_POST['password']);
+
+        if ($personId = $User->verify()) {
             $_SESSION['loggedin'] = true;
             $_SESSION['pseudo'] = $_POST['login'];
             $_SESSION['personId'] = $personId;
@@ -60,7 +70,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $password = password_hash($_POST['password-registration'], PASSWORD_DEFAULT);
 
-            if (register($_POST['firstname-registration'], $_POST['name-registration'], $_POST['email-registration'], $_POST['login-registration'], $password)) {
+            $User->setFirstname($_POST['firstname-registration']);
+            $User->setSurname($_POST['name-registration']);
+            $User->setEmail($_POST['email-registration']);
+            $User->setPseudo($_POST['login-registration']);
+            $User->setPassword($password);
+            $User->setRole(1);
+
+            if ($User->register()) {
                 $message = 'Bonjour ! ' . $_POST['firstname-registration'] . ' ' . $_POST['name-registration'] . ' veut s\'inscrire sur le blog.';
                 $message .= ' Voici son login : ' . $_POST['login-registration'] . ' . Bonne journée !';
 
@@ -85,13 +102,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $updateUserData = 'false';
 
+            $User->setId($_POST['personId']);
+            $User->setFirstname($_POST['firstname-update']);
+            $User->setSurname($_POST['name-update']);
+            $User->setEmail($_POST['email-update']);
+            $User->setPseudo($_POST['login-update']);
+
             if (!empty($_POST['password-update']) && !empty($_POST['password-verif-update']) && $_POST['password-update'] === $_POST['password-verif-update']) {
                 $password = password_hash($_POST['password-update'], PASSWORD_DEFAULT);
-                if (updateUserPassword($_POST['personId'], $password)) {
+                $User->setPassword($password);
+                if ($User->updatePassword()) {
                     $updateUserData = 'true';
                 }
             }
-            if (updateUserData($_POST['personId'], $_POST['firstname-update'], $_POST['name-update'], $_POST['email-update'], $_POST['login-update'])) {
+
+            if ($User->updateData()) {
                 $_SESSION['pseudo'] = $_POST['login-update'];
                 $updateUserData = 'true';
             } else {
@@ -109,8 +134,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (isset ($_POST['DELETEACCOUNT']) && $_POST['DELETEACCOUNT'] == 'OK') {
-        if($personId = $_SESSION['personId']) {
-            if (deleteUser($personId)) {
+        if ($personId = $_SESSION['personId']) {
+            $User->setId($personId);
+            if ($User->delete()) {
                 if (session_status() == PHP_SESSION_ACTIVE) {
                     session_unset();
                     session_destroy();
@@ -137,120 +163,29 @@ function verifyPerson($pseudo, $mdp) {
 }
 
 function myAccount() {
-    $lastPostsForFooter = showLastPosts(5);
+
+    $Comment = new Comment();
+    $Person = new Person();
+    $Post = new Post();
+
+    $Comment->setAuthor($_SESSION['personId']);
+
+    $lastPostsForFooter = $Post->showLastPosts(5);
     $person = showPersonByLogin($_SESSION['pseudo'])[0];
-    $allUsers = showAllUsers();
-    $myComments = showCommentsByUser($_SESSION['personId']);
-    $allNonValidComments = showAllInvalidComments();
+    $allUsers = $Person->showAll();
+    $myComments = $Comment->showByUser();
+    $allNonValidComments = $Comment->showAllInvalidComments();
     require ('views/mon-compte.php');
 }
 function connexion() {
-    $lastPostsForFooter = showLastPosts(5);
+    $Post = new Post();
+    $lastPostsForFooter = $Post->showLastPosts(5);
     require ('views/connexion.php');
 }
 function admin() {
-    $allPosts = showAllPosts();
+    $Post = new Post();
+    $allPosts = $Post->showAll();
     $author = showPersonByLogin($_SESSION['pseudo'])[0];
-    $lastPostsForFooter = showLastPosts(5);
+    $lastPostsForFooter = $Post->showLastPosts(5);
     require ('views/admin.php');
-}
-
-function register($firstName, $surname, $email, $pseudo, $password) {
-    $sql = 'INSERT INTO person (first_name, surname, email, pseudo, password, role, statut)
-                VALUES (:first_name, :surname, :email, :pseudo, :password, 1, 0)';
-    $params = array(
-        ':first_name' => $firstName,
-        ':surname' => $surname,
-        ':email' => $email,
-        ':pseudo' => $pseudo,
-        ':password' => $password
-    );
-
-    if (!DB::exec($sql, $params)) {
-        return false;
-    }
-    return true;
-}
-
-function showAllUsers() {
-    $sql = 'SELECT * FROM person
-            ORDER BY pseudo';
-    if ($result = DB::exec($sql)) {
-        return $result->fetchAll(PDO::FETCH_OBJ);
-    }
-    return [];
-}
-
-function showAllInvalidComments() {
-    $sql = 'SELECT comment.*, person.pseudo
-        FROM comment
-        LEFT JOIN person
-        ON comment.author_id = person.id
-        WHERE comment.statut = 0
-        ORDER BY comment.edited_at DESC';
-    if ($result = DB::exec($sql)) {
-        return $result->fetchAll(PDO::FETCH_OBJ);
-    }
-    return [];
-}
-
-function updateUserData($id, $firstName, $name, $email, $pseudo) {
-    $sql = 'UPDATE person
-        SET first_name = :firstName,
-            surname = :surname,
-            email = :email,
-            pseudo = :pseudo
-        WHERE id = :id';
-    $params = array(
-        ':firstName' => $firstName,
-        ':surname' => $name,
-        ':email' => $email,
-        ':pseudo' => $pseudo,
-        ':id' => $id
-    );
-
-    if (!DB::exec($sql, $params)) {
-        return false;
-    }
-    return true;
-}
-function updateUserPassword($id, $password) {
-    $sql = 'UPDATE person
-        SET password = :password
-        WHERE id = :id';
-    $params = array(
-        ':password' => $password,
-        ':id' => $id
-    );
-
-    if (!DB::exec($sql, $params)) {
-        return false;
-    }
-    return true;
-}
-function deleteUser($id) {
-    $sql = 'DELETE FROM person
-       WHERE id = :id';
-    $params = array(
-        ':id' => $id
-    );
-    if (!DB::exec($sql, $params)) {
-        return false;
-    }
-    return true;
-}
-
-function showCommentsByUser($userId) {
-    if (is_numeric($userId)) {
-        $sql = 'SELECT comment.*, post.title
-                FROM comment
-                LEFT JOIN post
-                ON comment.post_id = post.id
-                WHERE comment.author_id = :userId';
-        $params = array(':userId' => $userId);
-        if ($result = DB::exec($sql, $params)) {
-            return $result->fetchAll(\PDO::FETCH_OBJ);
-        }
-    }
-    return [];
 }
