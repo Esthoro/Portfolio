@@ -79,7 +79,7 @@ function sendMail($name, $email, $subject, $message) {
     }
 }
 function isConnected() {
-    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === 'true') {
         if (isset($_SESSION['pseudo'])) {
             return true;
         }
