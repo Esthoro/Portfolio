@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $User->setPassword($_POST['password']);
 
         if ($personId = $User->verify()) {
-            $_SESSION['loggedin'] = true;
+            $_SESSION['loggedin'] = 'true';
             $_SESSION['pseudo'] = $_POST['login'];
             $_SESSION['personId'] = $personId;
             header('Location: /PortfolioGit/');
