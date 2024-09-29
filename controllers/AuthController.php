@@ -3,7 +3,6 @@
 require_once 'functions.php';
 require_once 'C:\xampp\htdocs\PortfolioGit\public\assets\vendor\autoload.php';
 
-use App\DB;
 use App\Comment;
 use App\Person;
 use App\Post;
@@ -146,22 +145,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         };
     }
 }
-
-function verifyPerson($pseudo, $mdp) {
-    $sql = 'SELECT * FROM person WHERE pseudo = :pseudo
-            AND statut = 1';
-    $params = array(':pseudo' => $pseudo);
-    if ($result = DB::exec($sql, $params)) {
-        if ($result->rowCount() == 1) {
-            $user = $result->fetch(\PDO::FETCH_OBJ);
-            if (password_verify($mdp, $user->password)) {
-                return $user->id;
-            }
-        }
-    }
-    return false;
-}
-
 function myAccount() {
 
     $Comment = new Comment();
@@ -169,9 +152,10 @@ function myAccount() {
     $Post = new Post();
 
     $Comment->setAuthor($_SESSION['personId']);
+    $Person->setPseudo($_SESSION['pseudo']);
 
     $lastPostsForFooter = $Post->showLastPosts(5);
-    $person = showPersonByLogin($_SESSION['pseudo'])[0];
+    $person = $Person->showByPseudo();
     $allUsers = $Person->showAll();
     $myComments = $Comment->showByUser();
     $allNonValidComments = $Comment->showAllInvalidComments();
@@ -184,8 +168,10 @@ function connexion() {
 }
 function admin() {
     $Post = new Post();
+    $Person = new Person();
+    $Person->setPseudo($_SESSION['pseudo']);
     $allPosts = $Post->showAll();
-    $author = showPersonByLogin($_SESSION['pseudo'])[0];
+    $author = $Person->showByPseudo();
     $lastPostsForFooter = $Post->showLastPosts(5);
     require ('views/admin.php');
 }

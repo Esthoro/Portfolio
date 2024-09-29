@@ -3,8 +3,8 @@
 require_once 'functions.php';
 require_once 'C:\xampp\htdocs\PortfolioGit\public\assets\vendor\autoload.php';
 
-use App\DB;
 use App\Comment;
+use App\Person;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" ) {
 
@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
     }
 
     $Comment = new Comment();
+    $Person = new Person();
 
     if (isConnected()) {
 
@@ -20,11 +21,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
         $_GET = cleanRequest($_GET);
         $_SESSION = cleanRequest($_SESSION);
 
-        //Création commentaire
         if (isset($_POST['commentMessage']) && isset($_POST['postId']) && is_numeric($_POST['postId'])
             && isset($_POST['ADDCOMMENT']) && $_POST['ADDCOMMENT'] == 'OK') {
 
-            $commentAuthorId = showPersonByLogin($_SESSION['pseudo'])[0]->id;
+            $Person->setPseudo($_SESSION['pseudo']);
+            $person = $Person->showByPseudo();
+            $commentAuthorId = $person->id;
 
             $commentSent = 'false';
 

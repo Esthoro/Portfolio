@@ -7,7 +7,6 @@ use App\Person;
 use App\Post;
 use App\Comment;
 
-//Affichage post précis, avec commmentaires
 function singlePost($id) {
 
     $Post = new Post();
@@ -24,7 +23,6 @@ function singlePost($id) {
     require ('views/single-post.php');
 }
 
-//Affichage page de modification de post
 function showUpdatePost($id) {
     $Post = new Post();
     $Post->setId($id);
@@ -39,14 +37,12 @@ function errorPage() {
     require ('views/404.php');
 }
 
-//Affichage page d'accueil avec dernier post
 function homepage() {
     $Post = new Post();
     $lastPostsForFooter = $Post->showLastPosts(5);
     require ('views/home.php');
 }
 
-//Affichage de la page du blog
 function blog() {
     $Post = new Post();
     $posts = $Post->showAll();
@@ -54,7 +50,6 @@ function blog() {
     require ('views/blog.php');
 }
 
-//Affichage de la page A propos
 function about() {
     $Post = new Post();
     $lastPostsForFooter = $Post->showLastPosts(5);

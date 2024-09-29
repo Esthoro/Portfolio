@@ -24,12 +24,16 @@ function cleanRequest($data)
         }
 
     } else {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
+        $data = cleanData($data);
     }
 
     return $data;
+}
+
+function cleanData($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
 }
 
 function sendMail($name, $email, $subject, $message) {
@@ -94,15 +98,6 @@ function isAdmin() {
                 return true;
             }
         }
-    }
-    return false;
-}
-function showPersonByLogin($login) {
-    $sql = 'SELECT * FROM person WHERE pseudo = :pseudo';
-    $params = array(':pseudo' => $login);
-
-    if ($result = DB::exec($sql, $params)) {
-        return $result->fetchAll(\PDO::FETCH_OBJ);
     }
     return false;
 }
