@@ -2,6 +2,7 @@
     "name": "esther/portfolio_oc",
     "description": "Portfolio pour OpenClassrooms",
     "type": "project",
+    "license": "MIT",
     "minimum-stability": "dev",
     "require": {
         "phpmailer/phpmailer": "^6.0"
