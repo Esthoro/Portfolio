@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'httponly' => true,
         'samesite' => 'Strict'
     ]);
-    header('Location: /PortfolioGit/#contactForm');
+    header('Location: /#contactForm');
 }
 
 function contact() {

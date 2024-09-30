@@ -13,7 +13,7 @@
     </div>
 
     <div class="form mt-5">
-      <form action="/PortfolioGit/controllers/PostController.php" method="post" role="form" class="php-email-form" id="createPostForm">
+      <form action="/controllers/PostController.php" method="post" role="form" class="php-email-form" id="createPostForm">
           <input style="visibility: hidden" name="ADDPOST" value="OK">
           <div class="form-group">
               <input type="text" name="title" class="form-control" id="title" placeholder="Titre du post" required>
@@ -66,7 +66,10 @@
             <?php endif; ?>
             <ul>
             <?php if ($allPosts):
-                foreach ($allPosts as $post): ?>
+                foreach ($allPosts as $post):
+                    $Post = new \App\Post();
+                    $Post->setId($post->id);
+                    $author = $Post->showAuthorByPostId(); ?>
                     <li>
                         <div class="row">
                             <div class="col-md-9" data-aos="fade-up">
@@ -78,15 +81,15 @@
                                         <p><?= $post->content; ?></p>
                                         <div class="d-flex align-items-center author">
                                             <div class="name">
-                                                <h3 class="m-0 p-0">Auteur : <?= showAuthorByIdPost($post->id)[0]->pseudo; ?></h3>
+                                                <h3 class="m-0 p-0">Auteur : <?= $author->pseudo; ?></h3>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3" data-aos="fade-up">
-                                <p><a class="more" href="/PortfolioGit/updatePost/<?= $post->id; ?>/">Modifier le Post</a></p>
-                                <p><a class="more" href="/PortfolioGit/controllers/PostController.php?DELETEPOST=OK&id=<?= $post->id; ?>">Supprimer le Post</a></p>
+                                <p><a class="more" href="/updatePost/<?= $post->id; ?>/">Modifier le Post</a></p>
+                                <p><a class="more" href="/controllers/PostController.php?DELETEPOST=OK&id=<?= $post->id; ?>">Supprimer le Post</a></p>
                             </div>
                         </div>
                     </li>

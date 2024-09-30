@@ -39,6 +39,7 @@ function cleanData($data) {
 function sendMail($name, $email, $subject, $message) {
     $mail = new PHPMailer();
     $mail->isSMTP();
+    /*$mail->SMTPDebug = SMTP::DEBUG_SERVER;*/
     $mail->SMTPDebug = 0;
     $mail->Host = 'mail.gandi.net';
     $mail->Port = 587;

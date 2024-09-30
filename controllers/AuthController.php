@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['loggedin'] = 'true';
             $_SESSION['pseudo'] = $_POST['login'];
             $_SESSION['personId'] = $personId;
-            header('Location: /PortfolioGit/');
+            header('Location: /');
         } else {
             setcookie("errorLogin", 'true', [
                 'expires' => time() + 60,
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'httponly' => true,
                 'samesite' => 'Strict'
             ]);
-            header('Location: /PortfolioGit/mon-compte/#connexion');
+            header('Location: /mon-compte/#connexion');
         }
     }
 
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (session_status() == PHP_SESSION_ACTIVE) {
             session_unset();
             session_destroy();
-            header('Location: /PortfolioGit/');
+            header('Location: /');
         }
         else {
             setcookie("errorLogout", 'true', [
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'httponly' => true,
                 'samesite' => 'Strict'
             ]);
-            header('Location: /PortfolioGit/mon-compte/#logout-form');
+            header('Location: /mon-compte/#logout-form');
         }
     }
 
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'httponly' => true,
             'samesite' => 'Strict'
         ]);
-        header('Location: /PortfolioGit/mon-compte/#register-form');
+        header('Location: /mon-compte/#register-form');
     }
 
     if (isset ($_POST['personId']) && ($_POST['personId'] == $_SESSION['personId']) && isset ($_POST['UPDATEUSERDATA']) && $_POST['UPDATEUSERDATA'] == 'OK') {
@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'httponly' => true,
                 'samesite' => 'Strict'
             ]);
-            header('Location: /PortfolioGit/mon-compte/#update-data-form');
+            header('Location: /mon-compte/#update-data-form');
         }
     }
 
@@ -139,7 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (session_status() == PHP_SESSION_ACTIVE) {
                     session_unset();
                     session_destroy();
-                    header('Location: /PortfolioGit/');
+                    header('Location: /');
                 }
             }
         };

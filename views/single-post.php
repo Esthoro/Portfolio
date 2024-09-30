@@ -23,7 +23,7 @@
                             <div class="comment d-flex">
                                 <div class="flex-shrink-1 ms-2 ms-sm-3">
                                     <div class="comment-meta d-flex">
-                                        <h6 class="me-2"><?= showUserById($comment->author_id)[0]->pseudo; ?></h6>
+                                        <h6 class="me-2"><?php /*= showUserById($comment->author_id)[0]->pseudo; */?></h6>
                                     </div>
                                     <div class="comment-body"><?= $comment->content; ?></div>
                                 </div>
@@ -38,9 +38,9 @@
                     <div class="row justify-content-center mt-5">
                         <div class="container">
                             <div class="form mt-5 contact">
-                                <form action="/PortfolioGit/controllers/CommentController.php" method="post" role="form" class="php-email-form" id="sendComment">
+                                <form action="/controllers/CommentController.php" method="post" role="form" class="php-email-form" id="sendComment">
                                     <div class="row">
-                                        <h5 class="comment-title">Laisser un commentaire en tant que <strong><?= showPersonByLogin($_SESSION['pseudo'])[0]->pseudo; ?></strong></h5>
+                                        <h5 class="comment-title">Laisser un commentaire en tant que <strong><?= cleanData($_SESSION['pseudo']); ?></strong></h5>
                                         <div class="form-group">
                                             <textarea class="form-control" name="commentMessage" id="comment-message" placeholder="Votre commentaire" cols="30" rows="5"></textarea>
                                         </div>
@@ -65,7 +65,7 @@
                 <div class="row justify-content-center mt-5">
                     <div class="container">
                         <p>Vous devez être connecté pour laisser un commentaire.</p>
-                        <p>Pas encore inscrit ? <a href="/PortfolioGit/mon-compte/"><strong>C'est par ici !</strong></a></p>
+                        <p>Pas encore inscrit ? <a href="/mon-compte/"><strong>C'est par ici !</strong></a></p>
                     </div>
                 </div>
                 <?php endif; ?>

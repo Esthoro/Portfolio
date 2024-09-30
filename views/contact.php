@@ -19,7 +19,7 @@
                     <h3>Adresse</h3>
                     <address>Strasbourg, France</address>
                 </div>
-            </div><!-- End Info Item -->
+            </div>
 
             <div class="col-md-4">
                 <div class="info-item info-item-borders">
@@ -27,7 +27,7 @@
                     <h3>Téléphone</h3>
                     <p><a href="tel:+0123456789">+01 23 45 67 89</a></p>
                 </div>
-            </div><!-- End Info Item -->
+            </div>
 
             <div class="col-md-4">
                 <div class="info-item">
@@ -35,12 +35,12 @@
                     <h3>Email</h3>
                     <p><a href="mailto:contact@esther.horowitz.com">contact@esther.horowitz.com</a></p>
                 </div>
-            </div><!-- End Info Item -->
+            </div>
 
         </div>
 
         <div class="form mt-5">
-            <form action="/PortfolioGit/controllers/Contact.php" method="post" role="form" class="php-email-form">
+            <form action="/controllers/Contact.php" method="post" role="form" class="php-email-form">
                 <div class="row">
                     <div class="form-group col-md-6">
                         <input type="text" name="name" class="form-control" id="name" placeholder="Nom*" required>

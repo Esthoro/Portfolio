@@ -12,7 +12,7 @@
             </div>
 
             <div class="form mt-5 contact">
-                <form action="/PortfolioGit/controllers/AuthController.php" method="post" role="form" class="php-email-form">
+                <form action="/controllers/AuthController.php" method="post" role="form" class="php-email-form">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <input type="text" name="login" class="form-control" id="login" placeholder="Login" required>
@@ -43,7 +43,7 @@
             </div>
 
             <div class="form mt-5 contact">
-                <form action="/PortfolioGit/controllers/AuthController.php" id="register-form" method="post" role="form" class="php-email-form">
+                <form action="/controllers/AuthController.php" id="register-form" method="post" role="form" class="php-email-form">
                     <div class="row">
                         <input style="visibility: hidden" name="REGISTER" value="OK">
                         <div class="form-group col-md-4">

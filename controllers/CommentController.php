@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
                 'httponly' => true, // Non accessible via JavaScript
                 'samesite' => 'Strict' // Limite les cookies aux requêtes du même site
             ]);
-            header('Location: /PortfolioGit/singlePost/' . $_POST['postId'] . '/#sendComment');
+            header('Location: /singlePost/' . $_POST['postId'] . '/#sendComment');
         }
 
         // Suppression commentaire
@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
                 'httponly' => true,
                 'samesite' => 'Strict'
             ]);
-            header('Location: /PortfolioGit/mon-compte/#listComments');
+            header('Location: /mon-compte/#listComments');
         }
 
         //Validation commentaire
@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
                 'httponly' => true,
                 'samesite' => 'Strict'
             ]);
-            header('Location: /PortfolioGit/mon-compte/#listCommentsAdmin');
+            header('Location: /mon-compte/#listCommentsAdmin');
         }
 
     }

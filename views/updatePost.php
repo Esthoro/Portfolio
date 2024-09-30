@@ -13,7 +13,7 @@
         </div>
 
         <div class="form mt-5">
-            <form action="/PortfolioGit/controllers/PostController.php" method="post" role="form" class="php-email-form" id="updatePostForm">
+            <form action="/controllers/PostController.php" method="post" role="form" class="php-email-form" id="updatePostForm">
                 <input style="visibility: hidden" name="UPDATEPOST" value="OK">
                 <input style="visibility: hidden" name="id" value="<?= $post->id; ?>">
                 <div class="form-group">

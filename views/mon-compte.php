@@ -43,7 +43,7 @@
         <br>
 
         <div class="form mt-5">
-            <form action="/PortfolioGit/controllers/AuthController.php" id="logout-form" method="post" role="form" class="php-email-form">
+            <form action="/controllers/AuthController.php" id="logout-form" method="post" role="form" class="php-email-form">
                 <input style="visibility: hidden" name="DISCONNECT" value="OK">
                 <div class="text-center"><button type="submit">Se déconnecter</button></div>
             </form>
@@ -55,7 +55,7 @@
         <?php endif; ?>
 
         <div class="form mt-5">
-            <form action="/PortfolioGit/controllers/AuthController.php" id="update-data-form" method="post" role="form" class="php-email-form">
+            <form action="/controllers/AuthController.php" id="update-data-form" method="post" role="form" class="php-email-form">
                 <input style="visibility: hidden" name="UPDATEUSERDATA" value="OK">
                 <input style="visibility: hidden" name="personId" value="<?= $person->id; ?>">
                 <div class="row">
@@ -92,7 +92,7 @@
         <?php endif; ?>
 
         <div class="form mt-5">
-            <form action="/PortfolioGit/controllers/AuthController.php" method="post" role="form" class="php-email-form">
+            <form action="/controllers/AuthController.php" method="post" role="form" class="php-email-form">
                 <input style="visibility: hidden" name="DELETEACCOUNT" value="OK">
                 <div class="text-center post-meta mt-4">ATTENTION, CETTE ACTION EST IRREVERSIBLE !</div>
                 <div class="text-center"><button type="submit" onclick="return confirmDeletion();">Supprimer mon compte</button></div>
@@ -135,7 +135,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3" data-aos="fade-up">
-                                    <p><a class="more" href="/PortfolioGit/controllers/CommentController.php?DELETECOMMENT=OK&id=<?= $comment->id; ?>">Supprimer le commentaire</a></p>
+                                    <p><a class="more" href="/controllers/CommentController.php?DELETECOMMENT=OK&id=<?= $comment->id; ?>">Supprimer le commentaire</a></p>
                                 </div>
                             </div>
                         </li>
@@ -184,9 +184,9 @@
                                     </div>
                                     <div class="col-md-3" data-aos="fade-up">
                                         <?php if ($user->statut == 1 && $user->role != 2): ?>
-                                            <p><a class="more" href="/PortfolioGit/controllers/UserController.php?DELETEUSER=OK&id=<?= $user->id; ?>">Supprimer l'utilisateur</a></p>
+                                            <p><a class="more" href="/controllers/UserController.php?DELETEUSER=OK&id=<?= $user->id; ?>">Supprimer l'utilisateur</a></p>
                                         <?php elseif($user->statut == 0 && $user->role != 2): ?>
-                                            <p><a class="more" href="/PortfolioGit/controllers/UserController.php?VALIDUSER=OK&id=<?= $user->id; ?>">Valider l'utilisateur</a></p>
+                                            <p><a class="more" href="/controllers/UserController.php?VALIDUSER=OK&id=<?= $user->id; ?>">Valider l'utilisateur</a></p>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -230,8 +230,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3" data-aos="fade-up">
-                                        <p><a class="more" href="/PortfolioGit/controllers/CommentController.php?VALIDCOMMENT=OK&id=<?= $comment->id; ?>">Valider le commentaire</a></p>
-                                        <p><a class="more" href="/PortfolioGit/controllers/CommentController.php?DELETECOMMENT=OK&id=<?= $comment->id; ?>">Supprimer le commentaire</a></p>
+                                        <p><a class="more" href="/controllers/CommentController.php?VALIDCOMMENT=OK&id=<?= $comment->id; ?>">Valider le commentaire</a></p>
+                                        <p><a class="more" href="/controllers/CommentController.php?DELETECOMMENT=OK&id=<?= $comment->id; ?>">Supprimer le commentaire</a></p>
                                     </div>
                                 </div>
                             </li>

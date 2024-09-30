@@ -14,7 +14,7 @@
         <div class="row mb-5 text-center">
             <p>La page que vous cherchez n'existe pas !</p>
             <p>
-                <a href="/PortfolioGit/"><strong>Retour à l'accueil</strong></a>
+                <a href="/"><strong>Retour à l'accueil</strong></a>
             </p>
         </div>
 

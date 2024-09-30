@@ -14,7 +14,7 @@
 
           <div class="d-md-flex post-entry-2 half">
             <a href="#" class="me-4 thumbnail">
-              <img src="/PortfolioGit/public/assets/img/illustration-icone-ordinateur.png" alt="" class="img-fluid">
+              <img src="/public/assets/img/illustration-icone-ordinateur.png" alt="" class="img-fluid">
             </a>
             <div class="ps-md-5 mt-4 mt-md-0">
               <h2 class="mb-4 display-4">Mon parcours</h2>
@@ -27,7 +27,7 @@
 
           <div class="d-md-flex post-entry-2 half mt-5">
             <a href="#" class="me-4 thumbnail order-2">
-              <img src="/PortfolioGit/public/assets/img/mission.png" alt="" class="img-fluid">
+              <img src="/public/assets/img/mission.png" alt="" class="img-fluid">
             </a>
             <div class="pe-md-5 mt-4 mt-md-0">
               <h2 class="mb-4 display-4">Mes valeurs</h2>
@@ -58,49 +58,49 @@
               <div class="col-lg-6">
                   <h2 class="display-4">Mes projets</h2>
                   <p>Vous trouverez ci-dessous une brève description de quelques-uns de mes projets, ainsi que les éventuels liens des sites sur lesquels j'ai travaillés.</p>
-                  <p>Pour plus de détails, n'hésitez pas à <strong><a href="/PortfolioGit/contact/">me contacter</a></strong>.</p>
+                  <p>Pour plus de détails, n'hésitez pas à <strong><a href="/contact/">me contacter</a></strong>.</p>
               </div>
             </div>
           </div>
           <div class="col-lg-4 text-center mb-5">
-              <a href="/PortfolioGit/public/assets/pdf/doc_utilisateur.pdf" target="_blank">
-                  <img src="/PortfolioGit/public/assets/img/logoChaletsCaviar.png" alt="" class="img-fluid rounded-circle w-50 mb-4">
+              <a href="/public/assets/pdf/doc_utilisateur.pdf" target="_blank">
+                  <img src="/public/assets/img/logoChaletsCaviar.png" alt="" class="img-fluid rounded-circle w-50 mb-4">
                   <h4>Chalets & Caviar</h4>
                   <span class="d-block mb-3 text-uppercase">Formation OpenClassrooms</span>
                   <p>Création d'un site Wordpress pour location de chalets de luxe.</p>
               </a>
           </div>
           <div class="col-lg-4 text-center mb-5">
-              <a href="/PortfolioGit/public/assets/pdf/cahierDesCharges.pdf" target="_blank">
-                  <img src="/PortfolioGit/public/assets/img/logoFilmsPleinAir.png" alt="" class="img-fluid rounded-circle w-50 mb-4">
+              <a href="/public/assets/pdf/cahierDesCharges.pdf" target="_blank">
+                  <img src="/public/assets/img/logoFilmsPleinAir.png" alt="" class="img-fluid rounded-circle w-50 mb-4">
                   <h4>Films de Plein Air</h4>
                   <span class="d-block mb-3 text-uppercase">Formation OpenClassrooms</span>
                   <p>Conception d'un cahier des charges et réalisation d'une maquette de site HTML/CSS from scratch.</p>
               </a>
           </div>
           <div class="col-lg-4 text-center mb-5">
-            <img src="/PortfolioGit/public/assets/img/diagrammeSequenceOCajoutPlat.drawio.png" alt="" class="img-fluid rounded-circle w-50 mb-4">
+            <img src="/public/assets/img/diagrammeSequenceOCajoutPlat.drawio.png" alt="" class="img-fluid rounded-circle w-50 mb-4">
             <h4>ExpressFood</h4>
             <span class="d-block mb-3 text-uppercase">Formation OpenClassrooms</span>
             <p>Conception de la structure d'une application complexe : modèles et diagrammes UML, création de la base de données.</p>
           </div>
           <div class="col-lg-4 text-center mb-5">
               <a href="https://cigoland.fr/" target="_blank">
-                  <img src="/PortfolioGit/public/assets/img/logoCigoland.png" alt="" class="img-fluid rounded-circle w-50 mb-4">
+                  <img src="/public/assets/img/logoCigoland.png" alt="" class="img-fluid rounded-circle w-50 mb-4">
                   <h4>Cigoland</h4>
                   <p>Maintenance et mise à jour du site.<br>Développement de nombreuses fonctionnalités, notamment la boutique en ligne (auparavant dépendante d'un prestataire extérieur).</p>
               </a>
           </div>
           <div class="col-lg-4 text-center mb-5">
               <a href="https://m.cigoland.fr/" target="_blank">
-                <img src="/PortfolioGit/public/assets/img/launch.png" alt="" class="img-fluid rounded-circle w-50 mb-4">
+                <img src="/public/assets/img/launch.png" alt="" class="img-fluid rounded-circle w-50 mb-4">
                 <h4>Cigo'App (PWA)</h4>
                 <p>Développement complet de l'application à partir d'un CMS personnalisé.</p>
               </a>
           </div>
           <div class="col-lg-4 text-center mb-5">
               <a href="https://new.outdoordesign-alsace.fr/" target="_blank">
-                  <img src="/PortfolioGit/public/assets/img/OUTDOOR-OBERNAI-LOGO-1.png" alt="" class="img-fluid rounded-circle w-50 mb-4">
+                  <img src="/public/assets/img/OUTDOOR-OBERNAI-LOGO-1.png" alt="" class="img-fluid rounded-circle w-50 mb-4">
                   <h4>OutdoorDesign Alsace</h4>
                   <p>Développement complet du site web à partir d'un CMS personnalisé.</p>
               </a>

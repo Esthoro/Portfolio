@@ -46,6 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ||$_SERVER["REQUEST_METHOD"] == "GET" )
             'httponly' => true,
             'samesite' => 'Strict'
         ]);
-        header('Location: /PortfolioGit/mon-compte/#listPersonsAdmin');
+        header('Location: /mon-compte/#listPersonsAdmin');
     }
 }
