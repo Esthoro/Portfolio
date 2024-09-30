@@ -9,7 +9,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <link href="/favicon.ico" rel="icon">
+    <link href="/public/favicon.ico" rel="icon">
     <link href="/public/assets/img/logo.png" rel="logo">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
