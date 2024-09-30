@@ -1,6 +1,10 @@
 <?php
 
 namespace App;
+
+use App\DB;
+use PDO;
+
 class Person
 {
     const ROLES = [
