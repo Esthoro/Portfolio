@@ -1,0 +1,16 @@
+{
+  "name": "Mon Portfolio",
+  "short_name": "Portfolio",
+  "description": "Ceci est un portfolio pour présenter mes projets et compétences.",
+  "start_url": "/",
+  "display": "standalone",
+
+  "icons": [
+    {
+      "src": "/public/favicon.ico",
+      "type": "image/png",
+      "sizes": "32x32"
+    }
+  ],
+  "lang": "fr-FR"
+}
