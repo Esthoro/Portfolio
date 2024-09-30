@@ -3,6 +3,7 @@
 namespace App;
 
 use App\DB;
+use PDO;
 
 class Post
 {
