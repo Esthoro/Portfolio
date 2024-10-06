@@ -2,11 +2,6 @@ User-agent: *
 Allow: /
 
 Disallow: /admin/
-Disallow: /login/
-Disallow: /register/
-Disallow: /comments/
+Disallow: /mon-compte/
 
-Disallow: /config/
-Disallow: /vendor/
-Disallow: /database/
-Disallow: /logs/
+Disallow: /public/assets/vendor/
