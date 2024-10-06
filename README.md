@@ -4,14 +4,14 @@
 
 This project is part of a professional training in PHP web development. It consists of creating a personal blog to showcase my skills as a PHP developer. The website is divided into two main sections:
 - Public pages accessible to all visitors.
-- An administration section for managing blog posts, accessible only to registered and validated users.
+- An administration section for managing comments, accessible only to registered and validated users, and an administration section for managing blog posts, accessible only to admins.
 The blog serves as a portfolio and a platform to demonstrate my proficiency in web development, while maintaining best practices in terms of security and project management.
 
 **Features**
 
 **Public Pages:**
 
-- Home Page: displays my name, a photo/logo, a tagline, a contact form (name, email, message), a link to my CV (PDF), and social media links (GitHub, LinkedIn, Twitter, etc.).
+- Home Page: displays my name, a photo/logo, a tagline, a contact form (name, email, message), a link to my CV (PDF), and social media links (GitHub, LinkedIn).
 - Blog Page: lists all blog posts (sorted by date), showing the title, last modified date, a short summary, and a link to the full blog post.
 - Single Blog Post Page: displays the full content of a blog post including title, summary, content, author, last update date, and a comment form. A list of approved and published comments is also displayed.
 - User Authentication: user registration and login functionalities.
