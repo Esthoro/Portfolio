@@ -44,13 +44,13 @@ function sendMail($name, $email, $subject, $message) {
     $mail->Port = 587;
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->SMTPAuth = true;
-    $mail->Username = 'esther@pp-communication.fr';
-    $mail->Password = 'estherPass10';
-    $mail->setFrom('esther@pp-communication.fr');
+    $mail->Username = '*****';
+    $mail->Password = '*****';
+    $mail->setFrom(''*****';');
 
     $mail->addReplyTo($email, $name);
 
-    $mail->addAddress('esthoro28@gmail.com');
+    $mail->addAddress('****');
 
     $mail->Subject = $subject;
 
